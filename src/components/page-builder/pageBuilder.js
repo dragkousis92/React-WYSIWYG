@@ -1,5 +1,5 @@
 import React from 'react';
-
+import orderBy from 'lodash/orderBy';
 import withModelProps from 'utilities/withModelProps';
 
 import {
@@ -18,6 +18,7 @@ const PageBuilder = ({
   editorDataChange,
   ...rest
 }) => {
+  const orderedEditors = orderBy(editors, ['weight']);
   return (
     <div>
       <div>
@@ -28,7 +29,7 @@ const PageBuilder = ({
           </div>
         ))}
 
-        {editors.map(({ AdminComponent, id, data }) => (
+        {orderedEditors.map(({ AdminComponent, id, data }) => (
           <AdminComponent
             editorId={id}
             key={id}
@@ -40,7 +41,7 @@ const PageBuilder = ({
       <hr />
       <div>
         <span>Preview area </span>
-        {editors.map(({ ViewComponent, id, data }) => (
+        {orderedEditors.map(({ ViewComponent, id, data }) => (
           <ViewComponent key={id} {...data} />
         ))}
       </div>

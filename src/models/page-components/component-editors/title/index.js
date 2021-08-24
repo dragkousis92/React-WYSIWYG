@@ -1,8 +1,12 @@
 import React from 'react';
 import {
-  CKEditorView,
-  CKEditorAdminView,
+  TitleAdminView,
+  TitleRenderedView,
 } from 'components/component-views/title';
+
+const defaultData = {
+  title: 'enter title here',
+};
 
 const data = {
   title: 'enter title here',
@@ -10,11 +14,12 @@ const data = {
 
 const ckeditorConfig = {
   generateHTML: content => content,
-  AdminComponent: CKEditorAdminView,
-  ViewComponent: CKEditorView,
+  AdminComponent: TitleAdminView,
+  ViewComponent: TitleRenderedView,
+  type: 'title',
+  key: 'title',
   data,
-  type: 'ckeditor',
-  key: 'ck',
+  defaultData,
 };
 
 export default ckeditorConfig;

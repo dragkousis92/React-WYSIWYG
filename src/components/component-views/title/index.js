@@ -1,4 +1,4 @@
-import CKEditorAdminView from './adminView';
-import CKEditorView from './renderedView';
+import TitleAdminView from './TitleAdminView';
+import TitleRenderedView from './TitleRenderedView';
 
-export { CKEditorView, CKEditorAdminView };
+export { TitleAdminView, TitleRenderedView };

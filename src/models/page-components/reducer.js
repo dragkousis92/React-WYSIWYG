@@ -1,12 +1,7 @@
 import { addEditor, removeEditor, editorDataChange } from './actions';
 
 import editorsAvailable from './editorSetup';
-import {
-  // pageObject,
-  generateComponent,
-  // registerComponentEditor,
-  // componentEditors,
-} from './utils';
+import { generateComponent } from './utils';
 
 const initialState = { editors: [], editorsAvailable: editorsAvailable };
 
@@ -15,7 +10,10 @@ const reducer = (state = initialState, action) => {
     case addEditor.type:
       return {
         ...state,
-        editors: [generateComponent(action.payload), ...state.editors],
+        editors: [
+          generateComponent(state.editors.length + 1, action.payload),
+          ...state.editors,
+        ],
       };
     case removeEditor.type:
       return {

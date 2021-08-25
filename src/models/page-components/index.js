@@ -1,5 +1,10 @@
 import { editors, availableEditors } from './selectors';
-import { addEditor, editorDataChange, removeEditor } from './actions';
+import {
+  addEditor,
+  editorDataChange,
+  editorWeightChange,
+  removeEditor,
+} from './actions';
 import reducer from './reducer';
 
 export {
@@ -7,6 +12,7 @@ export {
   availableEditors,
   addEditor,
   editorDataChange,
+  editorWeightChange,
   removeEditor,
   reducer,
 };

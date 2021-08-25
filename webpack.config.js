@@ -11,7 +11,6 @@ module.exports = {
       components: path.resolve(__dirname, 'src/components'),
       utilities: path.resolve(__dirname, 'src/utilities'),
       'model-provider': path.resolve(__dirname, 'src/model-provider'),
-      lib: path.resolve(__dirname, 'src/lib'),
     },
   },
   devServer: { contentBase: path.join(__dirname, 'src') },
@@ -34,6 +33,18 @@ module.exports = {
         test: /\.js$/,
         enforce: 'pre',
         use: ['source-map-loader'],
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'fonts/',
+            },
+          },
+        ],
       },
     ],
   },

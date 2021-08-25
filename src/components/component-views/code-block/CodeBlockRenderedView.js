@@ -3,7 +3,8 @@ import Highlight from 'react-highlight';
 import 'highlight.js/styles/idea.css';
 
 type Props = {
-  content: string,
+  code: string,
+  language: string,
 };
 
 const CodeBlockRenderedView = ({ code, language }: Props) => (

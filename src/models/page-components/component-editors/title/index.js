@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   TitleAdminView,
   TitleRenderedView,
@@ -12,7 +11,7 @@ const data = {
   title: 'enter title here',
 };
 
-const ckeditorConfig = {
+const titleConfig = {
   generateHTML: content => content,
   AdminComponent: TitleAdminView,
   ViewComponent: TitleRenderedView,
@@ -22,4 +21,4 @@ const ckeditorConfig = {
   defaultData,
 };
 
-export default ckeditorConfig;
+export default titleConfig;

@@ -1,7 +1,7 @@
 import React from 'react';
 
 type Props = {
-  content: string,
+  title: string,
 };
 
 const TitleRenderedView = ({ title }: Props) => <h1>{title}</h1>;

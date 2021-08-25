@@ -1,4 +1,12 @@
 import React, { useState } from 'react';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import TextField from '@material-ui/core/TextField';
+import Select from '@material-ui/core/Select';
+import Grid from '@material-ui/core/Grid';
+import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
+
 const languageSuppport = {
   Apache: 'apache',
   Bash: 'bash',
@@ -18,7 +26,7 @@ const languageSuppport = {
   Shell: 'shell',
 };
 
-const CodeEditor = ({ code, handleSubmit, editorId, ...rest }) => {
+const CodeEditor = ({ code, handleSubmit, editorId }) => {
   const [text, setText] = useState(code);
   const [language, setLanguage] = useState('');
 
@@ -34,32 +42,65 @@ const CodeEditor = ({ code, handleSubmit, editorId, ...rest }) => {
     }
   };
 
+  const submitForm = () => {
+    handleSubmit({
+      editorId: editorId,
+      data: { code: text, language: language },
+    });
+  };
+
   const languageChange = event => setLanguage(event.target.value);
 
   return (
-    <form
-      onSubmit={() =>
-        handleSubmit({
-          editorId: editorId,
-          data: { code: text, language: language },
-        })
-      }>
-      <select value={language} onChange={languageChange}>
-        {Object.keys(languageSuppport).map(language => (
-          <option key={language} value={languageSuppport[language]}>
-            {language}
-          </option>
-        ))}
-      </select>
-      <textarea
-        className=''
-        placeholder='Write some Lyrics'
-        value={text}
-        onChange={onChange}
-        onKeyDown={onKeyDown}
-      />
-      <input type='submit' value='Submit' />
-    </form>
+    <Grid container spacing={3}>
+      <Grid item xs={12}>
+        <form onSubmit={submitForm}>
+          <Grid container>
+            <Grid item xs={12}>
+              <FormControl fullWidth>
+                <InputLabel htmlFor='language'>Language</InputLabel>
+                <Select
+                  id='language'
+                  value={language}
+                  onChange={languageChange}>
+                  {Object.keys(languageSuppport).map(language => (
+                    <MenuItem key={language} value={languageSuppport[language]}>
+                      {language}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+          </Grid>
+
+          <Grid container>
+            <Grid item xs={12}>
+              <FormControl fullWidth>
+                <TextField
+                  id='code'
+                  placeholder=''
+                  multiline
+                  minRows={10}
+                  maxRows={Infinity}
+                  value={text}
+                  onChange={onChange}
+                  onKeyDown={onKeyDown}
+                  label='Code'
+                />
+              </FormControl>
+            </Grid>
+          </Grid>
+
+          <Grid container>
+            <Grid item xs={12}>
+              <Button variant='contained' color='primary' onClick={submitForm}>
+                Save
+              </Button>
+            </Grid>
+          </Grid>
+        </form>
+      </Grid>
+    </Grid>
   );
 };
 

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 
-const TitleAdminView = ({ title, handleSubmit, editorId, ...rest }) => {
+type Props = {
+  title: 'string',
+};
+
+const TitleAdminView = ({ title, handleUpdate, editorId }) => {
   const [stateTitle, setFormData] = useState(title);
 
   return (
-    <form
-      onSubmit={() =>
-        handleSubmit({ editorId: editorId, data: { title: stateTitle } })
-      }>
+    <form onSubmit={() => handleUpdate({ title: stateTitle })}>
       <label>
         Title:
         <input
@@ -22,7 +23,7 @@ const TitleAdminView = ({ title, handleSubmit, editorId, ...rest }) => {
 };
 
 TitleAdminView.defaultProps = {
-  defaultTitle: '',
+  title: '',
 };
 export { TitleAdminView };
 export default TitleAdminView;

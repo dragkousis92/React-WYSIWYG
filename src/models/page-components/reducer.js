@@ -1,4 +1,9 @@
-import { addEditor, removeEditor, editorDataChange } from './actions';
+import {
+  addEditor,
+  removeEditor,
+  editorDataChange,
+  editorWeightChange,
+} from './actions';
 
 import editorsAvailable from './editorSetup';
 import { generateComponent } from './utils';
@@ -18,14 +23,24 @@ const reducer = (state = initialState, action) => {
     case removeEditor.type:
       return {
         ...state,
-        editors: editors.filter(editor => editor.id != action.payload),
+        editors: state.editors.filter(editor => editor.id != action.payload),
       };
     case editorDataChange.type:
-      const { editorId, data } = action.payload;
       return {
         ...state,
         editors: state.editors.map(editor =>
-          editor.id === editorId ? { ...editor, data } : editor,
+          editor.id === action.payload.editorId
+            ? { ...editor, data: action.payload.data }
+            : editor,
+        ),
+      };
+    case editorWeightChange.type:
+      return {
+        ...state,
+        editors: state.editors.map(editor =>
+          editor.id === action.payload.editorId
+            ? { ...editor, weight: action.payload.weight }
+            : editor,
         ),
       };
 

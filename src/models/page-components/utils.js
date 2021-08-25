@@ -1,6 +1,3 @@
-const pageObject = [];
-const componentEditors = [];
-
 const generateHash = length => {
   var result = '';
   var characters =
@@ -19,9 +16,6 @@ const generateComponent = (weight, config) => {
     weight: weight,
     ...config,
   };
-};
-const generateHTML = id => {
-  return '<div>' + id + '</div>';
 };
 
 // const registerComponentEditor = ({ type, label }, view) => {

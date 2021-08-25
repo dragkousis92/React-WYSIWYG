@@ -7,7 +7,8 @@
     "webpack": "webpack",
     "start": "webpack serve",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "flow": "flow"
+    "flow": "flow",
+    "lint": "eslint ."
   },
   "author": "Dimitris Ragkousis",
   "license": "ISC",
@@ -71,6 +72,7 @@
     "@ckeditor/ckeditor5-word-count": "^29.1.0",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
+    "@fontsource/roboto": "^4.5.0",
     "@material-ui/core": "^4.12.3",
     "axios": "^0.21.1",
     "lodash": "^4.17.21",

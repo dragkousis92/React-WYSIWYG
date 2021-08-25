@@ -14,14 +14,21 @@ import {
   editorWeightChange,
 } from 'models/page-components';
 
+type Props = {
+  editors: Object,
+  availableEditors: Object,
+  addEditor: () => void,
+  editorDataChange: () => void,
+  editorWeightChange: () => void,
+};
+
 const PageBuilder = ({
   editors,
   availableEditors,
   addEditor,
   editorDataChange,
   editorWeightChange,
-  ...rest
-}) => {
+}: Props) => {
   const orderedEditors = orderBy(editors, ['weight']);
   return (
     <div>

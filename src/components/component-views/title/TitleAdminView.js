@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 
 type Props = {
   title: 'string',
+  handleUpdate: () => void,
 };
 
-const TitleAdminView = ({ title, handleUpdate, editorId }) => {
+const TitleAdminView = ({ title, handleUpdate }: Props) => {
   const [stateTitle, setFormData] = useState(title);
 
   return (

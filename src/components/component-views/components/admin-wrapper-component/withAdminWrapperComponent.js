@@ -1,18 +1,25 @@
 import React from 'react';
 
-const withAdminWrapperComponent = Component => props => {
+type Props = {
+  editorDataChange: () => void,
+  editorWeightChange: () => void,
+  editorId: string,
+};
+const withAdminWrapperComponent = Component => (props: Props) => {
+  const { editorDataChange, editorWeightChange, editorId } = props;
+
   const updateView = editorId => data =>
-    props.editorDataChange({
+    editorDataChange({
       editorId,
       data,
     });
 
-  const updateViewWithEditorId = updateView(props.editorId);
+  const updateViewWithEditorId = updateView(editorId);
 
   const updateWeight = editorId => weight =>
-    props.editorWeightChange({ editorId, weight });
+    editorWeightChange({ editorId, weight });
 
-  const updateWeightWithEditorId = updateWeight(props.editorId);
+  const updateWeightWithEditorId = updateWeight(editorId);
 
   return (
     <Component

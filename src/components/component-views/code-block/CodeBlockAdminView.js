@@ -7,26 +7,15 @@ import Grid from '@material-ui/core/Grid';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 
-const languageSuppport = {
-  Apache: 'apache',
-  Bash: 'bash',
-  C: 'C',
-  'C++': 'cpp',
-  CSS: 'css',
-  Dockerfile: 'dockerfile',
-  HTML: 'html',
-  XML: 'xml',
-  Java: 'java',
-  Javascript: 'javascript',
-  Less: 'less',
-  Markdown: 'markdown',
-  PHP: 'php',
-  Plaintext: 'text',
-  SCSS: 'scss',
-  Shell: 'shell',
+import languageSuppport from './languageSupport';
+
+type Props = {
+  code: string,
+  handleSubmit: () => void,
+  editorId: string,
 };
 
-const CodeEditor = ({ code, handleSubmit, editorId }) => {
+const CodeEditor = ({ code, handleSubmit, editorId }: Props) => {
   const [text, setText] = useState(code);
   const [language, setLanguage] = useState('');
 

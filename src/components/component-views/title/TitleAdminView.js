@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 type Props = {
-  title: 'string',
+  title: string,
   handleUpdate: () => void,
 };
 

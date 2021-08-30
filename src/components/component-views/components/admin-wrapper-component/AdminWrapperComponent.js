@@ -7,6 +7,7 @@ type Props = {
   handleWeightChange: () => void,
   weight: numer,
   handleUpdate: () => void,
+  removeEditor: () => void,
   AdminComponent: React.node,
   defaultData: Object,
 };
@@ -15,11 +16,16 @@ const AdminWrapperComponent = ({
   handleWeightChange,
   weight,
   handleUpdate,
+  removeEditor,
   AdminComponent,
   defaultData,
 }: Props) => (
   <div className='admin-wrapper'>
-    <AdminTools weight={weight} handleWeightChange={handleWeightChange} />
+    <AdminTools
+      weight={weight}
+      handleWeightChange={handleWeightChange}
+      removeEditor={removeEditor}
+    />
     <div className='admin-wrapper'>
       <AdminComponent handleUpdate={handleUpdate} {...defaultData} />
     </div>

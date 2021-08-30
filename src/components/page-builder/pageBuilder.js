@@ -12,20 +12,23 @@ import {
   addEditor,
   editorDataChange,
   editorWeightChange,
+  removeEditor,
 } from 'models/page-components';
 
 type Props = {
-  editors: Object,
-  availableEditors: Object,
+  editors: [],
+  availableEditors: [],
   addEditor: () => void,
   editorDataChange: () => void,
   editorWeightChange: () => void,
+  removeEditor: () => void,
 };
 
 const PageBuilder = ({
   editors,
   availableEditors,
   addEditor,
+  removeEditor,
   editorDataChange,
   editorWeightChange,
 }: Props) => {
@@ -58,6 +61,7 @@ const PageBuilder = ({
             AdminComponent={AdminComponent}
             editorDataChange={editorDataChange}
             editorWeightChange={editorWeightChange}
+            removeEditor={removeEditor}
             weight={weight}
           />
         ))}
@@ -79,4 +83,5 @@ export default withModelProps({
   editorDataChange,
   availableEditors,
   editorWeightChange,
+  removeEditor,
 })(PageBuilder);

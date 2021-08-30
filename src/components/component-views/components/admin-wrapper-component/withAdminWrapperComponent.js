@@ -3,10 +3,12 @@ import React from 'react';
 type Props = {
   editorDataChange: () => void,
   editorWeightChange: () => void,
+  removeEditor: () => void,
   editorId: string,
 };
 const withAdminWrapperComponent = Component => (props: Props) => {
-  const { editorDataChange, editorWeightChange, editorId } = props;
+  const { editorDataChange, editorWeightChange, removeEditor, editorId } =
+    props;
 
   const updateView = editorId => data =>
     editorDataChange({
@@ -21,11 +23,17 @@ const withAdminWrapperComponent = Component => (props: Props) => {
 
   const updateWeightWithEditorId = updateWeight(editorId);
 
+  const removeEditorWithEditorId = () => {
+    console.log('clicked');
+    removeEditor(editorId);
+  };
+
   return (
     <Component
       {...props}
       handleWeightChange={updateWeightWithEditorId}
       handleUpdate={updateViewWithEditorId}
+      removeEditor={removeEditorWithEditorId}
     />
   );
 };

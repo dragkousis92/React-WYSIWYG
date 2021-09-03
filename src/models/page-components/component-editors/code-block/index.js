@@ -4,7 +4,8 @@ import {
 } from 'components/component-views/code-block';
 
 const defaultData = {
-  imageSource: '',
+  code: '',
+  language: '',
 };
 
 const data = {

@@ -1,15 +1,14 @@
-import React from 'react';
 import {
   ImageAdminView,
   ImageRenderedView,
 } from 'components/component-views/image';
 
 const defaultData = {
-  imageSource: '',
+  image: '',
 };
 
 const data = {
-  imageSource: '',
+  image: '',
 };
 
 const imageEditorConfig = {

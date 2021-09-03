@@ -4,7 +4,7 @@ import {
 } from 'components/component-views/ckeditor';
 
 const defaultData = {
-  title: 'enter title here',
+  content: 'enter title here',
 };
 
 const data = {

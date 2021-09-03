@@ -1,14 +1,14 @@
 import React from 'react';
 
 type Props = {
-  imageSource: string,
+  image: string,
 };
 
-const ImageRenderedView = ({ imageSource }: Props) => (
-  <div>{imageSource && <img src={imageSource} />}</div>
+const ImageRenderedView = ({ image }: Props) => (
+  <div>{image && <img src={image} alt='' />}</div>
 );
 
-ImageRenderedView.defaultProps = { imageSource: '' };
+ImageRenderedView.defaultProps = { image: '' };
 
 export { ImageRenderedView };
 export default ImageRenderedView;

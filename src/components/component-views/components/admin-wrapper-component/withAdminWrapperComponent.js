@@ -24,7 +24,6 @@ const withAdminWrapperComponent = Component => (props: Props) => {
   const updateWeightWithEditorId = updateWeight(editorId);
 
   const removeEditorWithEditorId = () => {
-    console.log('clicked');
     removeEditor(editorId);
   };
 

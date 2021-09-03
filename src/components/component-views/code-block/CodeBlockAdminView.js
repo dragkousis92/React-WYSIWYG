@@ -11,31 +11,32 @@ import languageSuppport from './languageSupport';
 
 type Props = {
   code: string,
-  handleSubmit: () => void,
-  editorId: string,
+  handleUpdate: () => void,
+  language: string,
 };
 
-const CodeEditor = ({ code, handleSubmit, editorId }: Props) => {
-  const [text, setText] = useState(code);
-  const [language, setLanguage] = useState('');
+const CodeEditor = ({
+  code: defaultInput,
+  language: defaultLanguage,
+  handleUpdate,
+}: Props) => {
+  const [code, setCode] = useState(defaultInput);
+  const [language, setLanguage] = useState(defaultLanguage);
 
-  const onChange = event => setText(event.target.value);
+  const onChange = event => setCode(event.target.value);
 
   const onKeyDown = event => {
     if (event.keyCode === 9) {
       event.preventDefault();
       const { selectionStart, selectionEnd } = event.target;
-      setText(
-        text.substring(0, selectionStart) + '\t' + text.substring(selectionEnd),
+      setCode(
+        code.substring(0, selectionStart) + '\t' + code.substring(selectionEnd),
       );
     }
   };
 
   const submitForm = () => {
-    handleSubmit({
-      editorId: editorId,
-      data: { code: text, language: language },
-    });
+    handleUpdate({ code: code, language: language });
   };
 
   const languageChange = event => setLanguage(event.target.value);
@@ -71,7 +72,7 @@ const CodeEditor = ({ code, handleSubmit, editorId }: Props) => {
                   multiline
                   minRows={10}
                   maxRows={Infinity}
-                  value={text}
+                  value={code}
                   onChange={onChange}
                   onKeyDown={onKeyDown}
                   label='Code'

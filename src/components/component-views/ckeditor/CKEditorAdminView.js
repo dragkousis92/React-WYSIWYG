@@ -2,8 +2,16 @@ import React, { useState } from 'react';
 import Editor from 'lib/Ckeditor/build/ckeditor';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 
-const CKEditorAdminView = ({ title, handleSubmit, editorId, ...rest }) => {
-  const [output, setOutput] = useState('');
+type Props = {
+  content: string,
+  handleUpdate: () => void,
+};
+
+const CKEditorAdminView = ({
+  content: defaultContent,
+  handleUpdate,
+}: Props) => {
+  const [content, setContent] = useState(defaultContent);
   const editorConfiguration = {
     toolbar: [
       'heading',
@@ -35,20 +43,16 @@ const CKEditorAdminView = ({ title, handleSubmit, editorId, ...rest }) => {
   return (
     <CKEditor
       editor={Editor}
-      identifier={editorId}
       config={editorConfiguration}
-      data={output}
+      data={content}
       onChange={(event, editor) => {
         const data = editor.getData();
-        handleSubmit({ editorId: editorId, data: { content: data } });
-        setOutput(data);
+        handleUpdate({ content: content });
+        setContent(data);
       }}
     />
   );
 };
 
-CKEditorAdminView.defaultProps = {
-  defaultTitle: '',
-};
 export { CKEditorAdminView };
 export default CKEditorAdminView;

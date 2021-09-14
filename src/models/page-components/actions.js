@@ -6,5 +6,12 @@ const addEditor = packageCreator.createAction('addEditor');
 const removeEditor = packageCreator.createAction('removeEditor');
 const editorDataChange = packageCreator.createAction('editorDataChange');
 const editorWeightChange = packageCreator.createAction('editorWeightChange');
+const savePage = packageCreator.createAction('savePage');
 
-export { addEditor, removeEditor, editorDataChange, editorWeightChange };
+export {
+  addEditor,
+  removeEditor,
+  editorDataChange,
+  editorWeightChange,
+  savePage,
+};

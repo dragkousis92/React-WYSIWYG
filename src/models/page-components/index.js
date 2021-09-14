@@ -4,6 +4,7 @@ import {
   editorDataChange,
   editorWeightChange,
   removeEditor,
+  savePage,
 } from './actions';
 import reducer from './reducer';
 
@@ -14,5 +15,6 @@ export {
   editorDataChange,
   editorWeightChange,
   removeEditor,
+  savePage,
   reducer,
 };

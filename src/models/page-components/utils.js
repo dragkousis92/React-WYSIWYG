@@ -12,9 +12,11 @@ const generateHash = length => {
 const generateComponent = (weight, config) => {
   const id = generateHash(6);
   return {
-    id: id,
-    weight: weight,
-    ...config,
+    [id]: {
+      id: id,
+      weight: weight,
+      ...config,
+    },
   };
 };
 

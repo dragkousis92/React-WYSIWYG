@@ -15,8 +15,6 @@ type Props = {
   AdminComponent: React.node,
   defaultData: Object,
   type: string,
-  handleDrag: () => void,
-  handleDrop: () => void,
   editorId: string,
 };
 
@@ -28,23 +26,16 @@ const AdminWrapperComponent = ({
   handleWeightChange,
   handleUpdate,
   removeEditor,
-  handleDrag,
-  handleDrop,
   editorId,
   type,
 }: Props) => (
-  <div
-    className={classes?.adminEditorWrapper}
-    onDragOver={ev => ev.preventDefault()}
-    onDragStart={handleDrag}
-    onDrop={handleDrop}
-    draggable={true}
-    id={editorId}>
+  <div className={classes?.adminEditorWrapper} id={editorId}>
     <AdminTools
       weight={weight}
       handleWeightChange={handleWeightChange}
       removeEditor={removeEditor}
       type={type}
+      id={editorId}
     />
     <div className='admin-wrapper'>
       <AdminComponent handleUpdate={handleUpdate} {...defaultData} />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
@@ -13,12 +13,16 @@ import compose from 'utilities/compose';
 
 import styles from './styles';
 
+import { sortableContainer, sortableElement } from 'react-sortable-hoc';
+import { calculateEditorWeightChanges } from './utils';
+
 import {
   availableEditors,
   addEditor,
   editorDataChange,
   editorWeightChange,
   removeEditor,
+  editorDragged,
   savePage,
   editors,
 } from 'models/page-components';
@@ -34,11 +38,17 @@ type Props = {
   generateHTML: () => void,
   HTMLWrapperRef: React.Ref,
   editors: {},
+  editorDragged: () => void,
 };
+
+const SortableItem = sortableElement(({ children }) => <li>{children}</li>);
+
+const SortableContainer = sortableContainer(({ children }) => {
+  return <ul>{children}</ul>;
+});
 
 const PageBuilder = ({
   classes,
-  editors,
   orderedEditors,
   availableEditors,
   addEditor,
@@ -47,56 +57,13 @@ const PageBuilder = ({
   editorWeightChange,
   generateHTML,
   HTMLWrapperRef,
+  editorDragged,
 }: Props) => {
-  const [dragId, setDragId] = useState();
-
-  const handleDrag = ev => {
-    setDragId(ev.currentTarget.id);
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    editorDragged(
+      calculateEditorWeightChanges(orderedEditors, oldIndex, newIndex),
+    );
   };
-
-  const handleDrop = ev => {
-    const draggedBox = editors[dragId];
-    const dragedBoxOrder = editors[dragId].weight;
-
-    // boxes.find(box => box.id === dragId);
-
-    // const dragBoxOrder = dragBox.order;
-    const droppedBox = editors[ev.currentTarget.id];
-    const droppedBoxOrder = editors[ev.currentTarget.id].weight;
-
-    const editorValues = Object.values(editors);
-
-    const changes = [];
-
-    changes[dragId] = droppedBoxOrder;
-
-    editorValues.map(editor => {
-      if (editor.id === dragId) return;
-
-      if (dragedBoxOrder < droppedBoxOrder) {
-        if (editor.weight <= droppedBoxOrder)
-          changes[editor.id] = editor.weight - 1;
-      } else {
-        if (editor.weight >= droppedBoxOrder)
-          changes[editor.id] = editor.weight + 1;
-      }
-    });
-
-    // const newBoxState = boxes.map(box => {
-    //   if (box.id === dragId) {
-    //     box.order = dropBoxOrder;
-    //   }
-    //   if (box.id === ev.currentTarget.id) {
-    //     box.order = dragBoxOrder;
-    //   }
-    //   return box;
-    // });
-
-    console.log(changes);
-
-    // setBoxes(newBoxState);
-  };
-
   return (
     <div className={classes?.pageWrapper}>
       <Typography variant='h1' component='h1' gutterBottom>
@@ -120,23 +87,24 @@ const PageBuilder = ({
             </ButtonGroup>
             <Button onClick={() => generateHTML()}>Save page</Button>
           </div>
-          {orderedEditors.map(
-            ({ AdminComponent, id, defaultData, weight, type }) => (
-              <AdminWrapperComponent
-                handleDrag={handleDrag}
-                handleDrop={handleDrop}
-                editorId={id}
-                key={id}
-                defaultData={defaultData}
-                AdminComponent={AdminComponent}
-                editorDataChange={editorDataChange}
-                editorWeightChange={editorWeightChange}
-                removeEditor={removeEditor}
-                weight={weight}
-                type={type}
-              />
-            ),
-          )}
+          <SortableContainer onSortEnd={onSortEnd}>
+            {orderedEditors.map(
+              ({ AdminComponent, id, defaultData, weight, type }) => (
+                <SortableItem key={id} index={weight}>
+                  <AdminWrapperComponent
+                    editorId={id}
+                    defaultData={defaultData}
+                    AdminComponent={AdminComponent}
+                    editorDataChange={editorDataChange}
+                    editorWeightChange={editorWeightChange}
+                    removeEditor={removeEditor}
+                    type={type}
+                    weight={weight}
+                  />
+                </SortableItem>
+              ),
+            )}
+          </SortableContainer>
         </div>
       </Grid>
 
@@ -159,6 +127,7 @@ export default compose(
     editorWeightChange,
     removeEditor,
     savePage,
+    editorDragged,
   }),
   withStyles(styles),
   withPageBuilder,

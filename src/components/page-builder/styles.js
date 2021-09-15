@@ -13,6 +13,10 @@ const styles = ({ spacing, palette }) => ({
     paddingTop: spacing(2),
     width: '100%',
   },
+  droppable: {
+    height: '300px',
+    background: 'blue',
+  },
 });
 
 export default styles;

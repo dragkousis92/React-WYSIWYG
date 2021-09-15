@@ -3,6 +3,7 @@ import {
   removeEditor,
   editorDataChange,
   editorWeightChange,
+  editorDragged,
 } from './actions';
 
 import editorsAvailable from './editorSetup';
@@ -17,7 +18,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         editors: {
           ...generateComponent(
-            Object.values(state.editors).length + 1,
+            Object.values(state.editors).length,
             action.payload,
           ),
           ...state.editors,
@@ -54,6 +55,23 @@ const reducer = (state = initialState, action) => {
             ...state.editors[action.payload.editorId],
             weight: action.payload.weight,
           },
+        },
+      };
+    case editorDragged.type:
+      console.log(action.payload);
+      return {
+        ...state,
+        editors: {
+          ...Object.values(state.editors).reduce(
+            (newEditors, editor) => ({
+              ...newEditors,
+              [editor.id]: {
+                ...editor,
+                weight: action.payload.indexOf(editor.id),
+              },
+            }),
+            {},
+          ),
         },
       };
 

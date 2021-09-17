@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import orderBy from 'lodash/orderBy';
+import { calculateEditorWeightChanges } from './utils';
 
 type Props = {
   editors: {},
@@ -17,6 +18,7 @@ const withPageBuilder = Component => (props: Props) => {
       orderedEditors={orderedEditors}
       generateHTML={getGeneratedHTML}
       HTMLWrapperRef={HTMLWrapperRef}
+      calculateEditorWeightChanges={calculateEditorWeightChanges}
     />
   );
 };

@@ -13,8 +13,8 @@ import compose from 'utilities/compose';
 
 import styles from './styles';
 
-import { sortableContainer, sortableElement } from 'react-sortable-hoc';
-import { calculateEditorWeightChanges } from './utils';
+import SortableContainer from './components/sortable-container';
+import SortableItem from './components/sortable-item';
 
 import {
   availableEditors,
@@ -22,9 +22,9 @@ import {
   editorDataChange,
   editorWeightChange,
   removeEditor,
-  editorDragged,
   savePage,
   editors,
+  editorDragged,
 } from 'models/page-components';
 
 type Props = {
@@ -36,16 +36,10 @@ type Props = {
   editorWeightChange: () => void,
   removeEditor: () => void,
   generateHTML: () => void,
-  HTMLWrapperRef: React.Ref,
-  editors: {},
   editorDragged: () => void,
+  HTMLWrapperRef: React.Ref,
+  calculateEditorWeightChanges: () => {},
 };
-
-const SortableItem = sortableElement(({ children }) => <li>{children}</li>);
-
-const SortableContainer = sortableContainer(({ children }) => {
-  return <ul>{children}</ul>;
-});
 
 const PageBuilder = ({
   classes,
@@ -57,13 +51,9 @@ const PageBuilder = ({
   editorWeightChange,
   generateHTML,
   HTMLWrapperRef,
+  calculateEditorWeightChanges,
   editorDragged,
 }: Props) => {
-  const onSortEnd = ({ oldIndex, newIndex }) => {
-    editorDragged(
-      calculateEditorWeightChanges(orderedEditors, oldIndex, newIndex),
-    );
-  };
   return (
     <div className={classes?.pageWrapper}>
       <Typography variant='h1' component='h1' gutterBottom>
@@ -87,7 +77,16 @@ const PageBuilder = ({
             </ButtonGroup>
             <Button onClick={() => generateHTML()}>Save page</Button>
           </div>
-          <SortableContainer onSortEnd={onSortEnd}>
+          <SortableContainer
+            onSortEnd={(oldIndex, newIndex) =>
+              editorDragged(
+                calculateEditorWeightChanges(
+                  orderedEditors,
+                  oldIndex,
+                  newIndex,
+                ),
+              )
+            }>
             {orderedEditors.map(
               ({ AdminComponent, id, defaultData, weight, type }) => (
                 <SortableItem key={id} index={weight}>

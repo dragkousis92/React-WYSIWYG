@@ -12,7 +12,6 @@ const data = {
 };
 
 const imageEditorConfig = {
-  generateHTML: content => content,
   AdminComponent: ImageAdminView,
   ViewComponent: ImageRenderedView,
   type: 'image',

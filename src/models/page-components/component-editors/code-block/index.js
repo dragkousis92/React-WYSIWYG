@@ -14,7 +14,6 @@ const data = {
 };
 
 const codeEditorConfig = {
-  generateHTML: content => content,
   AdminComponent: CodeBlockAdminView,
   ViewComponent: CodeBlockRenderedView,
   type: 'code',

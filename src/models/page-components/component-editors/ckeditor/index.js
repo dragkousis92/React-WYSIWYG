@@ -12,7 +12,6 @@ const data = {
 };
 
 const ckeditorConfig = {
-  generateHTML: content => content,
   AdminComponent: CKEditorAdminView,
   ViewComponent: CKEditorRenderedView,
   type: 'ckeditor',

@@ -12,7 +12,6 @@ const data = {
 };
 
 const titleConfig = {
-  generateHTML: content => content,
   AdminComponent: TitleAdminView,
   ViewComponent: TitleRenderedView,
   type: 'title',

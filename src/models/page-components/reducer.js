@@ -39,12 +39,6 @@ const reducer = (state = initialState, action) => {
             data: action.payload.data,
           },
         },
-
-        // state.editors.map(editor =>
-        //   editor.id === action.payload.editorId
-        //     ? { ...editor, data: action.payload.data }
-        //     : editor,
-        // ),
       };
     case editorWeightChange.type:
       return {
@@ -58,7 +52,6 @@ const reducer = (state = initialState, action) => {
         },
       };
     case editorDragged.type:
-      console.log(action.payload);
       return {
         ...state,
         editors: {

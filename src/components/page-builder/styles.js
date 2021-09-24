@@ -1,7 +1,14 @@
 const styles = ({ spacing, palette }) => ({
+  paper: {
+    background: palette.grey[100],
+  },
   pageWrapper: {
-    background: palette.backgroundGrey,
+    background: palette.grey[100],
     width: '100%',
+
+    '& $paper': {
+      background: palette.grey[100],
+    },
   },
   pageContainer: {
     maxWidth: '900px',
@@ -16,6 +23,9 @@ const styles = ({ spacing, palette }) => ({
   droppable: {
     height: '300px',
     background: 'blue',
+  },
+  pageWrapper2: {
+    backgroundColor: 'blue',
   },
 });
 

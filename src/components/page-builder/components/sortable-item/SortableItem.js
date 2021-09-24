@@ -1,14 +1,15 @@
 import React from 'react';
 import { sortableElement } from 'react-sortable-hoc';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@mui/styles/withStyles';
 import styles from './styles';
 
 type Props = {
   children: React.Node,
+  classes: Object,
 };
 
-const SortableItem = sortableElement(({ children }: Props) => (
-  <li>{children}</li>
+const SortableItem = sortableElement(({ classes, children }: Props) => (
+  <li className={classes?.sortableElement}>{children}</li>
 ));
 
 export { SortableItem };

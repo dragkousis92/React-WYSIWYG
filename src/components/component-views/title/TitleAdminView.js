@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import FormControl from '@material-ui/core/FormControl';
-import TextField from '@material-ui/core/TextField';
+import FormControl from '@mui/material/FormControl';
+import TextField from '@mui/material/TextField';
 
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@mui/styles/withStyles';
 import styles from './styles';
 
 type Props = {
@@ -24,6 +24,7 @@ const TitleAdminView = ({
         id='title'
         placeholder=''
         value={title}
+        variant='standard'
         onChange={event => {
           setTitle(event.target.value);
           handleUpdate({ title: title });

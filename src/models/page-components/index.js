@@ -7,6 +7,7 @@ import {
   savePage,
   editorDragged,
 } from './actions';
+import epics from './epics';
 import reducer from './reducer';
 
 export {
@@ -19,4 +20,5 @@ export {
   savePage,
   editorDragged,
   reducer,
+  epics,
 };

@@ -4,7 +4,10 @@ import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
 import { createEpicMiddleware, combineEpics } from 'redux-observable';
-import { reducer as pageComponentsReducer } from 'models/page-components/';
+import {
+  reducer as pageComponentsReducer,
+  epics as pageComponentsEpics,
+} from 'models/page-components/';
 
 type Props = {
   options: Object,
@@ -16,7 +19,7 @@ const ModelProvider = ({ options, children }: Props) => {
     pageComponentsReducer,
   });
 
-  const rootEpic = combineEpics();
+  const rootEpic = combineEpics(pageComponentsEpics);
 
   const initialState = {};
 

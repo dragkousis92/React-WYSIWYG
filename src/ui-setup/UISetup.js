@@ -1,9 +1,8 @@
 import React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import ThemeProvider from '@material-ui/styles/ThemeProvider';
-import withStyles from '@material-ui/core/styles/withStyles';
+import CssBaseline from '@mui/material/CssBaseline';
+import ThemeProvider from '@mui/material/styles/ThemeProvider';
 
-// import withUISetup from './withUISetup';
+import withStyles from '@mui/styles/withStyles';
 
 import theme from './theme';
 import styles from './styles';
@@ -25,7 +24,7 @@ const UISetupStyles = withStyles(styles)(
 type UISetupProps = {
   children: HTMLElement | Object | [],
 };
-
+console.log(theme);
 const UISetup = ({ children }: UISetupProps) => (
   <ThemeProvider theme={theme}>
     <UISetupStyles>{children}</UISetupStyles>

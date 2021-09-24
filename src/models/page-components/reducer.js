@@ -6,6 +6,8 @@ import {
   editorDragged,
 } from './actions';
 
+import { omit } from 'lodash';
+
 import editorsAvailable from './editorSetup';
 import { generateComponent } from './utils';
 
@@ -27,7 +29,7 @@ const reducer = (state = initialState, action) => {
     case removeEditor.type:
       return {
         ...state,
-        editors: state.editors.filter(editor => editor.id != action.payload),
+        editors: omit(state.editors, action.payload),
       };
     case editorDataChange.type:
       return {
@@ -52,6 +54,7 @@ const reducer = (state = initialState, action) => {
         },
       };
     case editorDragged.type:
+      console.log(action);
       return {
         ...state,
         editors: {

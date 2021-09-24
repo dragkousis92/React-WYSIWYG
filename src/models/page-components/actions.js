@@ -7,7 +7,7 @@ const removeEditor = packageCreator.createAction('removeEditor');
 const editorDataChange = packageCreator.createAction('editorDataChange');
 const editorWeightChange = packageCreator.createAction('editorWeightChange');
 const editorDragged = packageCreator.createAction('editorDragged');
-const savePage = packageCreator.createAction('savePage');
+const savePage = packageCreator.createEffect('savePage');
 
 export {
   addEditor,

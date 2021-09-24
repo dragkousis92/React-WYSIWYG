@@ -22,11 +22,21 @@ const styles = ({ spacing, palette }) => ({
   },
   cardTitle: {
     fontWeight: 'bold',
+    display: 'inline',
+    lineHeight: '24px',
   },
   adminstrativeControls: {
     borderBottom: `1px solid ${palette.background}`,
-    paddingBottom: spacing(1),
-    marginBottom: spacing(1),
+    padding: spacing(1),
+  },
+  controlsHeader: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  controlsHeaderInfo: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: spacing(1),
   },
 });
 

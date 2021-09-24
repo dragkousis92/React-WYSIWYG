@@ -1,11 +1,10 @@
 const styles = ({ spacing, palette }) => ({
   adminEditorWrapper: {
-    padding: spacing(1),
     background: palette.white,
-    marginTop: spacing(4),
+    marginTop: spacing(1),
     borderRadius: '4px',
   },
-  editorArea: {},
+  adminWrapper: { padding: spacing(1) },
 });
 
 export default styles;

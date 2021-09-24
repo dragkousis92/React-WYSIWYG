@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import TextField from '@material-ui/core/TextField';
-import Select from '@material-ui/core/Select';
-import Grid from '@material-ui/core/Grid';
-import MenuItem from '@material-ui/core/MenuItem';
-import Button from '@material-ui/core/Button';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import TextField from '@mui/material/TextField';
+import Select from '@mui/material/Select';
+import Grid from '@mui/material/Grid';
+import MenuItem from '@mui/material/MenuItem';
+import Button from '@mui/material/Button';
 
 import languageSuppport from './languageSupport';
 
@@ -42,55 +42,43 @@ const CodeEditor = ({
   const languageChange = event => setLanguage(event.target.value);
 
   return (
-    <Grid container spacing={3}>
-      <Grid item xs={12}>
-        <form onSubmit={submitForm}>
-          <Grid container>
-            <Grid item xs={12}>
-              <FormControl fullWidth>
-                <InputLabel htmlFor='language'>Language</InputLabel>
-                <Select
-                  id='language'
-                  value={language}
-                  onChange={languageChange}>
-                  {Object.keys(languageSuppport).map(language => (
-                    <MenuItem key={language} value={languageSuppport[language]}>
-                      {language}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </Grid>
-          </Grid>
-
-          <Grid container>
-            <Grid item xs={12}>
-              <FormControl fullWidth>
-                <TextField
-                  id='code'
-                  placeholder=''
-                  multiline
-                  minRows={10}
-                  maxRows={Infinity}
-                  value={code}
-                  onChange={onChange}
-                  onKeyDown={onKeyDown}
-                  label='Code'
-                />
-              </FormControl>
-            </Grid>
-          </Grid>
-
-          <Grid container>
-            <Grid item xs={12}>
-              <Button variant='contained' color='primary' onClick={submitForm}>
-                Save
-              </Button>
-            </Grid>
-          </Grid>
-        </form>
+    <form onSubmit={submitForm}>
+      <Grid container spacing={2}>
+        <Grid item xs={2}>
+          <FormControl variant='standard' fullWidth>
+            <InputLabel htmlFor='language'>Language</InputLabel>
+            <Select id='language' value={language} onChange={languageChange}>
+              {Object.keys(languageSuppport).map(language => (
+                <MenuItem key={language} value={languageSuppport[language]}>
+                  {language}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={10}>
+          <FormControl fullWidth>
+            <TextField
+              id='code'
+              placeholder=''
+              multiline
+              minRows={10}
+              maxRows={Infinity}
+              value={code}
+              onChange={onChange}
+              onKeyDown={onKeyDown}
+              label='Code'
+              variant='standard'
+            />
+          </FormControl>
+        </Grid>
+        <Grid item xs={12}>
+          <Button variant='contained' color='primary' onClick={submitForm}>
+            Save
+          </Button>
+        </Grid>
       </Grid>
-    </Grid>
+    </form>
   );
 };
 

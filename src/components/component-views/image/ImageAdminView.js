@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import FormControl from '@material-ui/core/FormControl';
-import TextField from '@material-ui/core/TextField';
+import FormControl from '@mui/material/FormControl';
+import TextField from '@mui/material/TextField';
 
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@mui/styles/withStyles';
 import styles from './styles';
 
 type Props = {
@@ -28,6 +28,7 @@ const ImageAdminView = ({
           setImage(event.target.value);
           handleUpdate({ image: event.target.value });
         }}
+        variant='standard'
         type='text'
         className={classes?.image}
         InputProps={{

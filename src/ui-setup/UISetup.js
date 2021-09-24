@@ -24,7 +24,6 @@ const UISetupStyles = withStyles(styles)(
 type UISetupProps = {
   children: HTMLElement | Object | [],
 };
-console.log(theme);
 const UISetup = ({ children }: UISetupProps) => (
   <ThemeProvider theme={theme}>
     <UISetupStyles>{children}</UISetupStyles>
